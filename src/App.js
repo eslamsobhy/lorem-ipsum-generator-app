@@ -6,7 +6,13 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Hello world!");
+    let amount = parseInt(count);
+    if (amount < 0) {
+      amount = 1;
+    } else if (amount > data.length) {
+      amount = data.length;
+    }
+    setText(data.slice(0, amount));
   };
 
   return (
@@ -26,14 +32,9 @@ function App() {
         </button>
       </form>
       <article className="lorem-text">
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique,
-          praesentium.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique,
-          praesentium.
-        </p>
+        {text.map((item, index) => {
+          return <p key={index}>{item}</p>;
+        })}
       </article>
     </section>
   );
